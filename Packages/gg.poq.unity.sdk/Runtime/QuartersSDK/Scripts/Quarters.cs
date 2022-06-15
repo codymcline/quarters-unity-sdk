@@ -266,7 +266,7 @@ namespace QuartersSDK {
         }
 
 
-        public IEnumerator GetAvatar(Action<Texture> OnSuccess, Action<Error> OnError) {
+        public Texture GetAvatar() {
             string url = $"https://www.poq.gg/images/{CurrentUser.Id}/{CurrentUser.AvatarUrl}";
             Log($"Pull avatar: {url}");
 
