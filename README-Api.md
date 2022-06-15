@@ -44,3 +44,28 @@ After the player has signed into their Quarters account (if they have not alread
 
 
 The player must click the **Authorize** button to allow Quarters transactions. Any attempt to exchange Quarters, without being authorized first, will result in an error during the transaction process.
+
+## Quarters script functions
+Some comments in the quarters script that may help clarify things for developers
+```
+//Around line 135 in the script
+//May need more info on why it's called deauthorize. Does this function have more to do with deauthorization or signing the user out?
+        public void Deauthorize() {
+            Session.Invalidate();
+            session = null;
+            CurrentUser = null;
+
+            Log("Quarters user signed out");
+            OnSignOut?.Invoke();
+        }
+        
+//May need more info on what details that are being grabbed
+        public void GetUserDetails(Action<User> OnSuccessDelegate, Action<string> OnFailedDelegate) {
+            StartCoroutine(GetUserDetailsCall(OnSuccessDelegate, OnFailedDelegate));
+        }
+
+//May need more clarification on what inormation about the user's balance is being obtained (the user's quarters, etc.).
+        public void GetAccountBalanceCall(Action<long> OnSuccess, Action<string> OnError) {
+            StartCoroutine(GetAccountBalance(OnSuccess, OnError));
+        }
+```
